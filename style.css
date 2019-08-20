@@ -1,0 +1,164 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: #4682b4;
+  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 2em;
+  line-height: 1.3em;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+.current-color {
+  font-size: 2.5em;
+  line-height: 15vh;
+}
+.game-info {
+  background-color: white;
+  color: #4682b4;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  line-height: 5vh;
+  font-size: 0.4em;
+}
+.game-info p:nth-child(1){
+  padding: 0 0.4vw;
+}
+.easy, .hard{
+  padding: 1.3vh 0.4vw;
+}
+.game-info p:nth-child(1):hover {
+  cursor: pointer;
+  background-color: #4682b4;
+  color:white;
+}
+.easy:hover, .hard:hover {
+  cursor: pointer;
+  background-color: #4682b4;
+  color:white;
+}
+.correct_ans {
+  background-color: #4682b4;
+}
+.active-difficulty {
+  background-color: #4682b4;
+  padding: 1.3vh;
+  color: white;
+}
+
+.colors div:hover {
+  cursor: pointer;
+}
+.colors_easy div:hover {
+  cursor: pointer;
+}
+.player-info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  height: 5vh;
+}
+
+main{
+  background-color: black;
+}
+
+.colors {
+  margin:0 25vw;
+  padding: 5vh 0;
+  height: 60vh;
+  display: grid;
+  grid-template-columns:3fr 3fr 3fr;
+  grid-template-rows: 2fr 2fr;
+  grid-gap:20px;
+}
+.colors_easy {
+  margin:0 25vw;
+  padding: 10vh 0;
+  height: 60vh;
+  display: grid;
+  grid-template-columns:3fr 3fr 3fr;
+  grid-template-rows: 2fr;
+  grid-gap:20px;
+}
+@media (max-width:800px){
+  .colors {
+    margin:0 15vw;
+    padding: 7vh 0;
+  }
+  .colors_easy {
+    margin:0 15vw;
+    padding: 15vh 0;
+  }
+}
+@media (max-width:600px){
+  .colors {
+    margin:0 5vw;
+    padding: 15vh 0;
+    height: 70vh;
+  }
+  .colors_easy {
+    margin:0 5vw;
+    padding: 20vh 0;
+    height: 70vh;
+  }
+  .game-info {
+    width: 100%;
+    line-height: 5vh;
+    font-size: 0.8em;
+  }
+  .current-color {
+    font-size: 1.5em;
+    line-height: 10vh;
+  }
+  header {
+    font-size: 1.5em;
+    line-height: 1em;
+  }
+  .game-info {
+    width: 100%;
+    line-height: 5vh;
+    font-size: 0.7em;
+  }
+}
+@media (max-width:400px){
+  .colors {
+    height: 70vh;
+  }
+  .colors_easy {
+    height: 70vh;
+  }
+  .game-info{
+    width: 100%;
+    line-height: 5vh;
+    font-size: 0.5em;
+  }
+  .player-info {
+    width: 100%;
+    line-height: 5vh;
+    font-size: 0.9em;
+  }
+
+}
+.displayed-color {
+  background-color: #4682b4;
+  border-radius: 20px;
+}
+.player-info {
+  background-color: white;
+  color: #4682b4;
+}
+footer {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4682b4;
+  padding: 1.6vh;
+}
