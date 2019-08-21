@@ -2,6 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family:"Montserrat", "Avenir";
+}
+body {
+  background-color: rgba(0, 0, 0, 0.911);
 }
 header {
   background-color: #4682b4;
@@ -26,38 +30,59 @@ header {
   width: 100%;
   line-height: 5vh;
   font-size: 0.4em;
+  border-bottom: 1px solid #4682b4;
 }
 .game-info p:nth-child(1){
   padding: 0 0.4vw;
-}
-.easy, .hard{
-  padding: 1.3vh 0.4vw;
 }
 .game-info p:nth-child(1):hover {
   cursor: pointer;
   background-color: #4682b4;
   color:white;
 }
+.easy, .hard{
+  padding: 1.3vh 0.4vw;
+}
 .easy:hover, .hard:hover {
   cursor: pointer;
   background-color: #4682b4;
   color:white;
 }
-.correct_ans {
-  background-color: #4682b4;
-}
-.active-difficulty {
+.active{
   background-color: #4682b4;
   padding: 1.3vh;
   color: white;
 }
+.squares {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 40%;
+  justify-content: center;
+  margin: 3vh 25vw;
+}
+.square {
+  width: 30%;
+  background:purple;
+  padding-bottom:30%;
+  margin:1.66%;
+  border-radius:2.5em;
+}
 
-.colors div:hover {
-  cursor: pointer;
-}
-.colors_easy div:hover {
-  cursor: pointer;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .player-info {
   display: flex;
   justify-content: space-around;
@@ -65,54 +90,18 @@ header {
   height: 5vh;
 }
 
-main{
-  background-color: black;
+
+@media (max-width:900px){
+  .squares {
+    max-width: 70%;
+    margin: 3vh 19vw;
+  }
+  footer {
+    padding-bottom: 2vh !important;
+  }
 }
 
-.colors {
-  margin:0 25vw;
-  padding: 5vh 0;
-  height: 60vh;
-  display: grid;
-  grid-template-columns:3fr 3fr 3fr;
-  grid-template-rows: 2fr 2fr;
-  grid-gap:20px;
-}
-.colors_easy {
-  margin:0 25vw;
-  padding: 10vh 0;
-  height: 60vh;
-  display: grid;
-  grid-template-columns:3fr 3fr 3fr;
-  grid-template-rows: 2fr;
-  grid-gap:20px;
-}
-@media (max-width:800px){
-  .colors {
-    margin:0 15vw;
-    padding: 7vh 0;
-  }
-  .colors_easy {
-    margin:0 15vw;
-    padding: 15vh 0;
-  }
-}
 @media (max-width:600px){
-  .colors {
-    margin:0 5vw;
-    padding: 15vh 0;
-    height: 70vh;
-  }
-  .colors_easy {
-    margin:0 5vw;
-    padding: 20vh 0;
-    height: 70vh;
-  }
-  .game-info {
-    width: 100%;
-    line-height: 5vh;
-    font-size: 0.8em;
-  }
   .current-color {
     font-size: 1.5em;
     line-height: 10vh;
@@ -126,13 +115,21 @@ main{
     line-height: 5vh;
     font-size: 0.7em;
   }
-}
-@media (max-width:400px){
-  .colors {
-    height: 70vh;
+  .squares {
+    max-width: 90%;
+    margin: 13vh 12vw;
   }
-  .colors_easy {
-    height: 70vh;
+}
+
+@media (max-width:400px){
+  .squares {
+    max-width: 80%;
+    margin: 3vh 10vw;
+  }
+  .square {
+    width: 40%;
+    padding-bottom:40%;
+    margin: 3vh 2vw 0 3vh;
   }
   .game-info{
     width: 100%;
@@ -146,10 +143,7 @@ main{
   }
 
 }
-.displayed-color {
-  background-color: #4682b4;
-  border-radius: 20px;
-}
+
 .player-info {
   background-color: white;
   color: #4682b4;
@@ -161,4 +155,5 @@ footer {
   align-items: center;
   background-color: #4682b4;
   padding: 1.6vh;
+  /* padding-bottom: 15vh !important; */
 }
