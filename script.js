@@ -4,8 +4,20 @@ const $$ = node => document.querySelectorAll(node);
 const log = node => console.log(node);
 const aev = (node, event, func) => node.addEventListener(event, func);
 
+
+/* VARAIBLES */
+// const easy = $('.easy');
+// const hard = $('.hard');
+const squares = $('.squares');
+const square = $$('.square');
+const correctColor = $('.current-color');
+const got_it = $('.got-it');
+const score = $('.score');
+const lives = $('.lives');
+const header = $('header');
+const mode = $$('.mode');
+
 /* COLOR ARRAY */
-const rand_strings = () => ['rgb(23, 67, 23)'];
 const generate_colors = num => {
   const colors = [];
   for (let i = 0; i < num; i++) {
@@ -16,17 +28,55 @@ const generate_colors = num => {
   }
   return colors;
 }
+const difficulty = {
+  easy: 3,
+  hard: 6
+}
+const handle_difficulty = (mode) => difficulty[mode];
+let how_difficult = 'easy';
+
+mode.forEach(item => item.addEventListener('click', () => {
+  if (!(Array.from(item.classList).includes('active'))) {
+    mode.forEach(item => item.classList.remove('active'));
+    item.classList.add('active');
+  }
+}));
+
+const init = () => {
+  square.forEach(item => item.style.backgroundColor = 'none');
+  
+  if (how_difficult === 'easy') {
+    let arr = generate_colors(handle_difficulty(how_difficult));
+    for (let i = 0; i < handle_difficulty('easy'); i++){
+      square[i].style.backgroundColor = arr[i];
+    }
+  }
+  square.forEach(item => {
+    if(item.style.backgroundColor === 'none'){
+      item.style.display = 'none'
+    }
+    else {
+      item.style.display = 'block'
+    }
+  });
+  if (how_difficult === 'hard') {
+    let arr = generate_colors(handle_difficulty(how_difficult));
+    for (let i = 0; i < handle_difficulty('hard'); i++){
+      square[i].style.backgroundColor = arr[i];
+    }
+  }
+}
+init();
+mode.forEach(item => aev(item, 'click', e => {
+  Array.from(e.target.classList).includes('easy')?how_difficult = 'easy':how_difficult = 'hard';
+  init();
+}));
+// init()
+
+
 //log(Math.floor(Math.random()*6));
 
-const easy = $('.easy');
-const hard = $('.hard');
-const dom_colors = $('.colors');
-const display_color = $$('.displayed-color');
-const correctColor = $('.current-color');
-const got_it = $('.got-it');
-const score = $('.score');
-const lives = $('.lives');
-const header = $('header');
+/*
 
 easy.onclick = () => {
   dom_colors.classList.remove('colors');
@@ -43,18 +93,18 @@ hard.onclick = () => {
 
 
 
-const do_the_coloring = () => {
-  const colorList = generate_colors(6);
-  const rand_color = Math.floor(Math.random() * 6);
+const do_the_coloring = (num) => {
+  const colorList = generate_colors(num);
+  const random_number = Math.floor(Math.random() * num);
   colorList.forEach((item, index) => {
     display_color[index].style.backgroundColor = item;
   });
   got_it.textContent = '';
-  const correct_color_value = colorList[rand_color];
+  const correct_color_value = colorList[random_number];
   correctColor.textContent = correct_color_value;
 }
 
-do_the_coloring();
+do_the_coloring(6);
 
 const correct_ans = node => {
   header.style.backgroundColor = node.style.backgroundColor;
@@ -66,8 +116,9 @@ const correct_ans = node => {
   setTimeout(do_the_coloring, 1500);
 }
 
-const wrong_ans = node => {
+const remove_event = () => {
   return got_it.textContent = 'Wrong!';
 }
 
 
+*/

@@ -62,7 +62,7 @@ header {
 }
 .square {
   width: 30%;
-  background:purple;
+  background-color:none;
   padding-bottom:30%;
   margin:1.66%;
   border-radius:2.5em;
