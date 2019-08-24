@@ -30,7 +30,7 @@ header {
   width: 100%;
   line-height: 5vh;
   font-size: 0.4em;
-  border-bottom: 1px solid #4682b4;
+  border-bottom: 1px solid rgb(69, 130, 179);
 }
 .game-info p:nth-child(1){
   padding: 0 0.4vw;

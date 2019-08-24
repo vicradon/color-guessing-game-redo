@@ -10,7 +10,7 @@ const aev = (node, event, func) => node.addEventListener(event, func);
 // const hard = $('.hard');
 const squares = $('.squares');
 const square = $$('.square');
-const correctColor = $('.current-color');
+const correctColorNode = $('.current-color');
 const got_it = $('.got-it');
 const score = $('.score');
 const lives = $('.lives');
@@ -28,83 +28,99 @@ const generate_colors = num => {
   }
   return colors;
 }
-const difficulty = {
-  easy: 3,
-  hard: 6
+
+const handle_difficulty = (mode) => {
+  const difficulty = {
+    easy: 3,
+    hard: 6
+  }
+  return difficulty[mode]
 }
-const handle_difficulty = (mode) => difficulty[mode];
+
 let how_difficult = 'easy';
 
-mode.forEach(item => item.addEventListener('click', () => {
-  if (!(Array.from(item.classList).includes('active'))) {
-    mode.forEach(item => item.classList.remove('active'));
-    item.classList.add('active');
-  }
-}));
+const toggle_active = () => {
+  mode.forEach(item => item.addEventListener('click', () => {
+    if (!(Array.from(item.classList).includes('active'))) {
+      mode.forEach(item => item.classList.remove('active'));
+      item.classList.add('active');
+    }
+  }));
+}
+toggle_active()
 
-const init = () => {
-  square.forEach(item => item.style.backgroundColor = 'none');
-  
-  if (how_difficult === 'easy') {
+const win = () => {
+  log(this)
+  clickedColor = this.style.backgroundColor;
+  if (clickedColor === correctColor) {
+    got_it.textContent = 'Correct!';
+    score.textContent = +score.textContent++;
+  }
+  else {
+    got_it.textContent = 'Wrong!'
+  }
+}
+// function win() {
+//   clickedColor = this.style.backgroundColor;
+//   if (clickedColor === correctColor) {
+//     got_it.textContent = 'Correct!';
+//     score.textContent = +score.textContent++;
+//   }
+//   else {
+//     got_it.textContent = 'Wrong!'
+//   }
+// }
+const uniform_colors = () => {
+  square.forEach(item => item.style.backgroundColor = 'rgb(69, 130, 179)');
+  header.style.backgroundColor = 'rgb(69, 130, 179)';
+}
+
+const remove_event = () => {
+  square.forEach(item => item.removeEventListener('click', win));
+}
+const add_event = () => {
+  square.forEach(item => aev(item, 'click', win))
+}
+add_event();
+//remove_event();
+
+const init = (value) => {
+  if (value === 'easy') {
     let arr = generate_colors(handle_difficulty(how_difficult));
-    for (let i = 0; i < handle_difficulty('easy'); i++){
+    correctColor = arr[1];
+    for (let i = 0; i < handle_difficulty('easy'); i++) {
       square[i].style.backgroundColor = arr[i];
+    }
+    for (let i = 3; i < 6; i++) {
+      square[i].style.display = 'none';
     }
   }
-  square.forEach(item => {
-    if(item.style.backgroundColor === 'none'){
-      item.style.display = 'none'
-    }
-    else {
-      item.style.display = 'block'
-    }
-  });
-  if (how_difficult === 'hard') {
+  if (value === 'hard') {
     let arr = generate_colors(handle_difficulty(how_difficult));
-    for (let i = 0; i < handle_difficulty('hard'); i++){
+    for (let i = 0; i < handle_difficulty('hard'); i++) {
       square[i].style.backgroundColor = arr[i];
+    }
+    for (let i = 3; i < 6; i++) {
+      square[i].style.display = 'block';
     }
   }
 }
-init();
+init(how_difficult);
+
+
 mode.forEach(item => aev(item, 'click', e => {
-  Array.from(e.target.classList).includes('easy')?how_difficult = 'easy':how_difficult = 'hard';
-  init();
+  let a = Array.from(e.target.classList).includes('easy') ? how_difficult = 'easy' : how_difficult = 'hard';
+  init(a);
 }));
-// init()
+
 
 
 //log(Math.floor(Math.random()*6));
 
 /*
 
-easy.onclick = () => {
-  dom_colors.classList.remove('colors');
-  dom_colors.classList.add('colors_easy');
-  hard.classList.remove('active-difficulty');
-  easy.classList.add('active-difficulty');
-}
-hard.onclick = () => {
-  dom_colors.classList.remove('colors_easy');
-  dom_colors.classList.add('colors');
-  hard.classList.add('active-difficulty');
-  easy.classList.remove('active-difficulty');
-}
 
 
-
-const do_the_coloring = (num) => {
-  const colorList = generate_colors(num);
-  const random_number = Math.floor(Math.random() * num);
-  colorList.forEach((item, index) => {
-    display_color[index].style.backgroundColor = item;
-  });
-  got_it.textContent = '';
-  const correct_color_value = colorList[random_number];
-  correctColor.textContent = correct_color_value;
-}
-
-do_the_coloring(6);
 
 const correct_ans = node => {
   header.style.backgroundColor = node.style.backgroundColor;
