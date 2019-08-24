@@ -7,6 +7,27 @@
 body {
   background-color: rgba(0, 0, 0, 0.911);
 }
+.play-again {
+  position: absolute;
+  top: 120%;
+  left: 20%;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 1em;
+  outline: none;
+  background-color: #4682b4;
+  color: #fff;
+}
+.play-again:active {
+  background-color: #4da7f1;
+}
+.game-over {
+  position: absolute;
+  font-size: 6em;
+  color: red;
+  top: 40%;
+  left: 10%;
+}
 header {
   background-color: #4682b4;
   color: white;

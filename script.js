@@ -16,6 +16,7 @@ const score = $('.score');
 const lives = $('.lives');
 const header = $('header');
 const mode = $$('.mode');
+const body = $('body');
 
 /* COLOR ARRAY */
 const generate_colors = num => {
@@ -49,18 +50,8 @@ const toggle_active = () => {
 }
 toggle_active()
 
-const win = () => {
-  log(this)
-  clickedColor = this.style.backgroundColor;
-  if (clickedColor === correctColor) {
-    got_it.textContent = 'Correct!';
-    score.textContent = +score.textContent++;
-  }
-  else {
-    got_it.textContent = 'Wrong!'
-  }
-}
-// function win() {
+// const win = () => {
+//   log(this)
 //   clickedColor = this.style.backgroundColor;
 //   if (clickedColor === correctColor) {
 //     got_it.textContent = 'Correct!';
@@ -70,10 +61,38 @@ const win = () => {
 //     got_it.textContent = 'Wrong!'
 //   }
 // }
-const uniform_colors = () => {
-  square.forEach(item => item.style.backgroundColor = 'rgb(69, 130, 179)');
-  header.style.backgroundColor = 'rgb(69, 130, 179)';
+
+const gameOver = () => {
+  remove_event();
+  body.classList.add('game-over');
+  body.textContent = "Game Over!";
+  const code = `<button class = 'play-again' onclick = 'playAgain()'>Play Again?</button>`
+  body.appendChild(code);
 }
+
+const uniform_colors = (correct_color) => {
+  square.forEach(item => item.style.backgroundColor = correct_color);
+  header.style.backgroundColor = correct_color;
+}
+
+function win() {
+  clickedColor = this.style.backgroundColor;
+  if (clickedColor === correctColor) {
+    got_it.textContent = 'Correct!';
+    score.textContent++;
+    lives.textContent++;
+    uniform_colors(clickedColor);
+    remove_event();
+  }
+  else {
+    got_it.textContent = 'Wrong!'
+    lives.textContent--;
+    if(lives.textContent < 1){
+      gameOver();
+    }
+  }
+}
+
 
 const remove_event = () => {
   square.forEach(item => item.removeEventListener('click', win));
@@ -81,13 +100,13 @@ const remove_event = () => {
 const add_event = () => {
   square.forEach(item => aev(item, 'click', win))
 }
-add_event();
-//remove_event();
+
 
 const init = (value) => {
   if (value === 'easy') {
     let arr = generate_colors(handle_difficulty(how_difficult));
-    correctColor = arr[1];
+    correctColor = arr[Math.floor(Math.random() * arr.length)];
+    correctColorNode.textContent = correctColor;
     for (let i = 0; i < handle_difficulty('easy'); i++) {
       square[i].style.backgroundColor = arr[i];
     }
@@ -104,16 +123,18 @@ const init = (value) => {
       square[i].style.display = 'block';
     }
   }
+  add_event();
 }
-init(how_difficult);
+init(how_difficult)
 
 
 mode.forEach(item => aev(item, 'click', e => {
   let a = Array.from(e.target.classList).includes('easy') ? how_difficult = 'easy' : how_difficult = 'hard';
   init(a);
 }));
-
-
+const playAgain = () => {
+  init()
+}
 
 //log(Math.floor(Math.random()*6));
 
@@ -129,7 +150,7 @@ const correct_ans = node => {
 
   display_color.forEach(item => item.removeEventListener('click', log('still not working')));
   score.textContent = Number(score.textContent) + 1;
-  setTimeout(do_the_coloring, 1500);
+  
 }
 
 const remove_event = () => {
