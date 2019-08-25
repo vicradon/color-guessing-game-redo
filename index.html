@@ -14,7 +14,10 @@
     <p class="current-color">rgb(23, 50, 59)</p>
     <p>color game</p>
     <div class="game-info">
-      <p>new colors</p>
+      <div class="actions">
+        <p class="new-color">new colors</p>
+        <p class="info">info</p>
+      </div>
       <p class="got-it"></p>
       <p class="modes">
         <span class="mode easy active">easy</span>
@@ -23,6 +26,18 @@
     </div>
   </header>
   <main>
+    <div style='display:none' class="modal">
+      <div class="modal-content">
+        <p>Game Over</p>
+        <button class='play-again' onclick='playAgain()'>Play Again?</button>
+      </div>
+    </div>
+    <div style='display:none' class="info-modal">
+      <div class="modal-content">
+        <h1>Color Guessing Game</h1>
+        <p>Initially inspired by a tutorial. Help gotten from Sphinx Tochukwu</p>
+      </div>
+    </div>
     <section class="squares">
       <div class="square"></div>
       <div class="square"></div>
@@ -40,6 +55,7 @@
       <p>copyright &copy; 2019. Vicradon</p>
     </footer>
   </main>
+
 
   <script src="script.js"></script>
 </body>
