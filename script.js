@@ -3,6 +3,11 @@
   * FIX THE INFO MODAL
 */
 
+/*
+ *   some problems i noticed
+ *   Lives are going into negative numbers
+*/
+
 /* HELPERS */
 const $ = node => document.querySelector(node);
 const $$ = node => document.querySelectorAll(node);
