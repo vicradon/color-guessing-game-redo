@@ -1,5 +1,6 @@
 /* THINGS TO FIX 
   * ANIMATING THE WRONG TO MOVE ALONG THE HORIZONTAL
+  * FIX THE INFO MODAL
 */
 
 
@@ -22,6 +23,9 @@ const mode = $$('.mode');
 const body = $('body');
 const modal = $('.modal');
 const highScore = $('.high-score');
+const newColor = $('.new-color');
+const info = $('.info');
+const infoModal = $('.info-modal');
 
 /* COLOR ARRAY */
 const generate_colors = num => {
@@ -134,6 +138,17 @@ mode.forEach(item => aev(item, 'click', e => {
   init(a);
   start();
 }));
+
+/* NEW COLOR FUNCTION */
+newColor.onclick = () => {
+  init(how_difficult);
+}
+
+/* INFO PAGE */
+info.onclick = () => {
+  infoModal.style.display = 'block'
+}
+
 
 /* GAME OVER FUNCTION */
 const gameOver = () => {
