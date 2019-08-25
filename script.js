@@ -1,3 +1,4 @@
+console.log("this is the aaa branch");
 /* helpers */
 const $ = node => document.querySelector(node);
 const $$ = node => document.querySelectorAll(node);
@@ -87,7 +88,7 @@ function win() {
   else {
     got_it.textContent = 'Wrong!'
     lives.textContent--;
-    if(lives.textContent < 1){
+    if (lives.textContent < 1) {
       gameOver();
     }
   }
@@ -150,7 +151,7 @@ const correct_ans = node => {
 
   display_color.forEach(item => item.removeEventListener('click', log('still not working')));
   score.textContent = Number(score.textContent) + 1;
-  
+
 }
 
 const remove_event = () => {
