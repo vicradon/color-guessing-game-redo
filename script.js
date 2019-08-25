@@ -60,6 +60,7 @@ function win() {
     got_it.textContent = 'Correct!';
     score.textContent++;
     lives.textContent++;
+    highScore.textContent++;
     uniform_colors(clickedColor);
     remove_event();
     setTimeout(init, 1000, how_difficult);
@@ -67,7 +68,7 @@ function win() {
   else {
     got_it.textContent = 'Wrong!'
     lives.textContent--;
-    if(lives.textContent < 1){
+    if (lives.textContent < 1) {
       gameOver();
     }
   }
@@ -84,8 +85,6 @@ const add_event = () => {
 /* INITIALIE GAME */
 const init = (value) => {
   got_it.textContent = '';
-  lives.textContent = 4;
-  highScore.textContent = +score.textContent + 1;
   header.style.backgroundColor = '#4682b4';
   if (value === 'easy') {
     let arr = generate_colors(handle_difficulty(how_difficult));
@@ -100,6 +99,8 @@ const init = (value) => {
   }
   if (value === 'hard') {
     let arr = generate_colors(handle_difficulty(how_difficult));
+    correctColor = arr[Math.floor(Math.random() * arr.length)];
+    correctColorNode.textContent = correctColor;
     for (let i = 0; i < handle_difficulty('hard'); i++) {
       square[i].style.backgroundColor = arr[i];
     }
@@ -110,7 +111,13 @@ const init = (value) => {
   add_event();
 }
 init(how_difficult);
-
+const start = () => {
+  got_it.textContent = '';
+  lives.textContent = 4;
+  score.textContent = 0;
+  highScore.textContent = 0;
+}
+start();
 /* MODE ACTIVENESS HANDLER */
 const toggle_active = () => {
   mode.forEach(item => item.addEventListener('click', () => {
@@ -119,17 +126,15 @@ const toggle_active = () => {
       item.classList.add('active');
     }
   }));
-  /* THIS NEEDS FIXING */
-  const a = [];
-  mode.forEach(item => a.push(item.style.backgroundColor));
-  init(how_difficult);
 }
 toggle_active();
 
-/* ADD CLICK EVENT TO EACH SQUARE */
+/* ADD CLICK EVENT TO EACH MODE BUTTON */
 mode.forEach(item => aev(item, 'click', e => {
   let a = Array.from(e.target.classList).includes('easy') ? how_difficult = 'easy' : how_difficult = 'hard';
+  // init(how_difficult);
   init(a);
+  start();
 }));
 
 /* GAME OVER FUNCTION */
