@@ -5,8 +5,10 @@
 */
 
 /*
- *   some problems i noticed
+ *   some problems I noticed
  *   Lives are going into negative numbers
+ *   But then, if it reaches zero, It doesn't alert game         over immediately
+ *   One nice CSS animation would be a shake of both the wrong and the squares when the answer is wrong. Like a left to right shake instead of a bounce.
 */
 
 /* HELPERS */
