@@ -3,6 +3,10 @@
   * FIX THE INFO MODAL
 */
 
+/*
+ *   some problems i noticed
+ *   Lives are going into negative numbers
+*/
 
 /* HELPERS */
 const $ = node => document.querySelector(node);
@@ -57,6 +61,9 @@ const uniform_colors = (correct_color) => {
 
 /* WIN HANDLER */
 function win() {
+  squares.classList.add("bounce");
+  squares.classList.add("fast");
+
   clickedColor = this.style.backgroundColor;
   if (clickedColor === correctColor) {
     got_it.textContent = 'Correct!';
@@ -69,11 +76,17 @@ function win() {
   }
   else {
     got_it.textContent = 'Wrong!'
+    got_it.classList.add("fadeInLeftBig");
+    // got_it.classList.add("fadeInRightBig");
     lives.textContent--;
     if (lives.textContent < 1) {
-      gameOver();
+      setTimeout(() => { gameOver(); }, 2000);
     }
   }
+  setTimeout(() => {
+    squares.classList.remove("bounce");
+    got_it.classList.remove("fadeInLeftBig");
+  }, 1000);
 }
 
 /* REMOVE THE CLICK EVENT HANDLER */
@@ -112,6 +125,7 @@ const init = (value) => {
   }
   add_event();
 }
+
 init(how_difficult);
 const start = () => {
   got_it.textContent = '';
