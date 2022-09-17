@@ -23,6 +23,9 @@ const body = $('body');
 const modal = $('.modal');
 const highScore = $('.high-score');
 
+let correctColor = "";
+const initial_lives = 3;
+
 /* COLOR ARRAY */
 const generate_colors = num => {
   const colors = [];
@@ -53,19 +56,19 @@ const uniform_colors = (correct_color) => {
 
 /* WIN HANDLER */
 function win() {
-  clickedColor = this.style.backgroundColor;
+  let clickedColor = this.style.backgroundColor;
   if (clickedColor === correctColor) {
     got_it.textContent = 'Correct!';
     score.textContent++;
-    lives.textContent++;
-    highScore.textContent++;
+
+    if (score.textContent > highScore.textContent) highScore.textContent++;
     uniform_colors(clickedColor);
     remove_event();
     setTimeout(init, 1000, how_difficult);
   }
   else {
     got_it.textContent = 'Wrong!'
-    lives.textContent--;
+    if (lives.textContent > 0) lives.textContent--;
     if (lives.textContent < 1) {
       gameOver();
     }
@@ -111,7 +114,7 @@ const init = (value) => {
 init(how_difficult);
 const start = () => {
   got_it.textContent = '';
-  lives.textContent = 4;
+  lives.textContent = initial_lives;
   score.textContent = 0;
   highScore.textContent = 0;
 }
@@ -144,5 +147,10 @@ const gameOver = () => {
 const playAgain = () => {
   modal.style.display = 'none';
   score.textContent = 0;
+  lives.textContent = initial_lives
   init(how_difficult);
+}
+
+$('.new-colors').onclick = function(){
+  init(how_difficult)
 }

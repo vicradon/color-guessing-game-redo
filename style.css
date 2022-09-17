@@ -58,16 +58,21 @@ header {
   background-color: #4682b4;
   color:white;
 }
-.easy, .hard{
+.easy, .hard, .new-colors{
   padding: 1.3vh 0.4vw;
+  width: 80px;
+  height: 100%;
+  border: 1px solid  #fff;
 }
-.easy:hover, .hard:hover {
+
+.easy:hover, .hard:hover, .new-colors:hover {
   cursor: pointer;
   background-color: #4682b4;
   color:white;
 }
 .active{
   background-color: #4682b4;
+  border: 1px solid  #4682b4;
   padding: 1.3vh;
   color: white;
 }
